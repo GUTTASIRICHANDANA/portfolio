@@ -1,0 +1,150 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    /* Light mode - Clean professional theme with soft blue/teal accents */
+    --background: 210 40% 98%;
+    --foreground: 220 25% 15%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 220 25% 15%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 220 20% 20%;
+
+    --primary: 200 95% 45%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 174 80% 45%;
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 220 15% 96%;
+    --muted-foreground: 220 15% 45%;
+
+    --accent: 174 75% 50%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 220 15% 90%;
+    --input: 220 15% 90%;
+    --ring: 200 95% 45%;
+
+    --radius: 0.75rem;
+
+    /* Background patterns */
+    --bg-pattern: radial-gradient(circle at 20% 50%, rgba(0, 191, 165, 0.05) 0%, transparent 50%),
+                  radial-gradient(circle at 80% 80%, rgba(56, 189, 248, 0.05) 0%, transparent 50%);
+  }
+
+  .dark {
+    /* Dark mode - Professional theme with balanced background */
+    --background: 215 20% 25%;
+    --foreground: 210 30% 95%;
+
+    --card: 215 18% 30%;
+    --card-foreground: 210 30% 95%;
+
+    --popover: 220 20% 22%;
+    --popover-foreground: 210 40% 96%;
+
+    --primary: 200 95% 50%;
+    --primary-foreground: 220 20% 18%;
+
+    --secondary: 174 80% 50%;
+    --secondary-foreground: 220 20% 18%;
+
+    --muted: 217 20% 25%;
+    --muted-foreground: 215 20% 70%;
+
+    --accent: 174 75% 55%;
+    --accent-foreground: 220 20% 18%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 210 40% 96%;
+
+    --border: 217 20% 30%;
+    --input: 217 20% 30%;
+    --ring: 200 95% 50%;
+
+    /* Background patterns for dark mode */
+    --bg-pattern: radial-gradient(circle at 20% 50%, rgba(0, 191, 165, 0.12) 0%, transparent 50%),
+                  radial-gradient(circle at 80% 80%, rgba(56, 189, 248, 0.12) 0%, transparent 50%);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    min-height: 100vh;
+    scroll-behavior: smooth;
+    background-image: var(--bg-pattern);
+    background-attachment: fixed;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: hsl(var(--muted));
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: hsl(var(--primary));
+    border-radius: 4px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: hsl(var(--accent));
+  }
+}
+
+@layer components {
+  .soft-card {
+    @apply bg-card border border-border rounded-xl shadow-md hover:shadow-lg transition-all duration-300;
+  }
+
+  .section-spacing {
+    @apply py-16 md:py-24 px-4 md:px-8;
+  }
+
+  .skill-tag {
+    @apply px-4 py-2 bg-primary/5 border border-primary/20 rounded-full text-sm font-medium text-foreground hover:bg-primary/10 hover:border-primary/40 transition-all duration-300;
+  }
+
+  .soft-glow {
+    box-shadow: 0 4px 20px hsl(var(--primary) / 0.15);
+  }
+
+  .section-divider {
+    @apply bg-muted;
+  }
+
+  /* Slow spin animation for decorative elements */
+  @keyframes spin-slow {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  .animate-spin-slow {
+    animation: spin-slow 8s linear infinite;
+  }
+}
